@@ -1,20 +1,32 @@
 import { useSelector } from 'react-redux'
+import { editId } from '../../utils/editId'
+import { Card, CardImage, GalleryList, Thumb } from './Gallery.styled'
 
 export const Gallery = () => {
   const { items } = useSelector((state) => state.pokemons)
-  console.log(items)
+
   return (
     <>
-      <ul>
+      <GalleryList>
         {items.map((pokemon) => {
           return (
-            
-            <li key={pokemon.name}>
+            <Card className={`type-${pokemon.types[0]}`} key={pokemon.name}>
+              <Thumb>
+                <CardImage src={pokemon.sprite} alt={pokemon.name} />
+              </Thumb>
               <p>{pokemon.name}</p>
-            </li>
+              <p>{editId(pokemon.id)}</p>
+              <ul>
+                {pokemon.types.map((type) => (
+                  <li key={type}>
+                    <span>{type}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
           )
         })}
-      </ul>
+      </GalleryList>
     </>
   )
 }

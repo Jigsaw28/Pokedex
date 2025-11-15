@@ -1,0 +1,57 @@
+:root {
+  .type-grass {
+    --card-bg: #1EBA11;
+  }
+  .type-steel {
+      --card-bg: #448F85;
+  }
+  .type-electric {
+      --card-bg: #B7B117;
+  }
+  .type-fairy {
+      --card-bg: #C01A8D;
+  }
+  .type-dark {
+      --card-bg: #373737;
+  }
+  .type-dragon {
+      --card-bg: #1268B8;
+  }
+  .type-ice {
+      --card-bg: #3A9D90;
+  }
+  .type-psychic {
+      --card-bg: #C4484A;
+  }
+  .type-ghost {
+      --card-bg: #6B2BF1;
+  }
+  .type-fighting {
+      --card-bg: #BA114E;
+  }
+  .type-ground {
+      --card-bg: #A77437;
+  }
+  .type-rock {
+      --card-bg: #857D57;
+  }
+  .type-normal {
+      --card-bg: #B6B6B6;
+  }
+  .type-poison {
+      --card-bg: #7E00CB;
+  }
+  .type-flying {
+    --card-bg: linear-gradient(135deg, #CBE9FF 0%, #2299EE 100%);
+  }
+  .type-water {
+      --card-bg: #009ACB;
+  }
+.type-bug {
+    --card-bg: #91AC22;
+}
+.type-fire {
+    --card-bg: #EB6C6C;
+}
+
+}

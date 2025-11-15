@@ -21,7 +21,10 @@ export const getPokemonAPI = createAsyncThunk(
             id: data.id,
             name: data.name,
             types: data.types.map((item) => item.type.name),
-            sprite: data.sprites.front_default,
+            sprite: 
+              data.sprites?.other?.['official-artwork']?.front_default ||
+              data.sprites?.other?.dream_world?.front_default ||
+              data.sprites?.front_default,
           }
         })
       )
