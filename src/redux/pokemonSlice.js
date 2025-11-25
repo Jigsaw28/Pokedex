@@ -7,13 +7,19 @@ const pokemonSlice = createSlice({
     items: [],
     isLoading: false,
     error: null,
+    offset: 0,
+  },
+  reducers: {
+    increaseOffset(state) {
+      state.offset += 20
+    },
   },
   extraReducers: (builder) =>
     builder
       .addCase(getPokemonAPI.fulfilled, (state, action) => {
         state.isLoading = false
         state.error = null
-        state.items.push(...action.payload)
+        state.items= [...state.items, ...action.payload]
       })
       .addCase(getPokemonAPI.pending, (state) => {
         state.isLoading = true
@@ -26,4 +32,6 @@ const pokemonSlice = createSlice({
         state.error = action.payload || action.error?.message
       }),
 })
+
+export const { increaseOffset } = pokemonSlice.actions;
 export const pokemonReducer = pokemonSlice.reducer

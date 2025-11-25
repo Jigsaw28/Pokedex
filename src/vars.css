@@ -1,57 +1,88 @@
 :root {
   .type-grass {
-    --card-bg: #1EBA11;
+    --card-bg: #1eba11;
+    --card-tag: #80e177;
   }
   .type-steel {
-      --card-bg: #448F85;
+    --card-bg: #448f85;
+    --card-tag: #a4ffe9;
   }
   .type-electric {
-      --card-bg: #B7B117;
+    --card-bg: #b7b117;
+    --card-tag: #fffa86;
   }
   .type-fairy {
-      --card-bg: #C01A8D;
+    --card-bg: #c01a8d;
+    --card-tag: #ffa2e3;
   }
-  .type-dark {
-      --card-bg: #373737;
-  }
-  .type-dragon {
-      --card-bg: #1268B8;
-  }
-  .type-ice {
-      --card-bg: #3A9D90;
-  }
-  .type-psychic {
-      --card-bg: #C4484A;
-  }
-  .type-ghost {
-      --card-bg: #6B2BF1;
-  }
-  .type-fighting {
-      --card-bg: #BA114E;
-  }
-  .type-ground {
-      --card-bg: #A77437;
-  }
-  .type-rock {
-      --card-bg: #857D57;
-  }
-  .type-normal {
-      --card-bg: #B6B6B6;
-  }
-  .type-poison {
-      --card-bg: #7E00CB;
-  }
-  .type-flying {
-    --card-bg: linear-gradient(135deg, #CBE9FF 0%, #2299EE 100%);
-  }
-  .type-water {
-      --card-bg: #009ACB;
-  }
-.type-bug {
-    --card-bg: #91AC22;
-}
-.type-fire {
-    --card-bg: #EB6C6C;
-}
 
+  .type-dark {
+    --card-bg: #373737;
+    --card-tag: #8f8f8f;
+  }
+
+  .type-dragon {
+    --card-bg: #1268b8;
+    --card-tag: #87c5ff;
+  }
+
+  .type-ice {
+    --card-bg: #3a9d90;
+    --card-tag: #aefff4;
+  }
+
+  .type-psychic {
+    --card-bg: #c4484a;
+    --card-tag: #ff5e60;
+  }
+
+  .type-ghost {
+    --card-bg: #6b2bf1;
+    --card-tag: #b592ff;
+  }
+
+  .type-fighting {
+    --card-bg: #ba114e;
+    --card-tag: #ff699f;
+  }
+
+  .type-ground {
+    --card-bg: #a77437;
+    --card-tag: #ffbf72;
+  }
+
+  .type-rock {
+    --card-bg: #857d57;
+    --card-tag: #cfc06f;
+  }
+
+  .type-normal {
+    --card-bg: #b6b6b6;
+    --card-tag: #cbcbcb;
+  }
+
+  .type-poison {
+    --card-bg: #7e00cb;
+    --card-tag: #d89cfd;
+  }
+
+  .type-flying {
+    --card-bg: linear-gradient(135deg, #cbe9ff 0%, #2299ee 100%);
+    --card-tag: linear-gradient(135deg, #cbe9ff 0%, #2299ee 100%);
+  }
+
+  .type-water {
+    --card-bg: #009acb;
+    --card-tag: #9ff3ff;
+  }
+
+  .type-bug {
+    --card-bg: #91ac22;
+    --card-tag: #c9ff84;
+  }
+
+  .type-fire {
+    --card-bg: #eb6c6c;
+    --card-tag: #ff6464;
+  }
 }

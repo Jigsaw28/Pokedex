@@ -1,6 +1,17 @@
 import { useSelector } from 'react-redux'
 import { editId } from '../../utils/editId'
-import { Card, CardImage, GalleryList, Thumb } from './Gallery.styled'
+import {
+  Card,
+  CardId,
+  CardImage,
+  GalleryList,
+  Name,
+  Thumb,
+  TypeEl,
+  TypesList,
+} from './Gallery.styled'
+import { firstElUpperCase } from '../../utils/firstElUpperCase'
+import { typeIcons } from '../../utils/typeIcons'
 
 export const Gallery = () => {
   const { items } = useSelector((state) => state.pokemons)
@@ -14,15 +25,22 @@ export const Gallery = () => {
               <Thumb>
                 <CardImage src={pokemon.sprite} alt={pokemon.name} />
               </Thumb>
-              <p>{pokemon.name}</p>
-              <p>{editId(pokemon.id)}</p>
-              <ul>
-                {pokemon.types.map((type) => (
-                  <li key={type}>
-                    <span>{type}</span>
-                  </li>
-                ))}
-              </ul>
+              <Name>{firstElUpperCase(pokemon.name)}</Name>
+              <CardId>{editId(pokemon.id)}</CardId>
+              <TypesList>
+                {pokemon.types.map((type) => {
+                  const Icon = typeIcons[type]
+                  return (
+                    <li key={type}>
+                      
+                      <TypeEl className={`type-${type}`}>
+                        <Icon />
+                        {firstElUpperCase(type)}
+                      </TypeEl>
+                    </li>
+                  )
+                })}
+              </TypesList>
             </Card>
           )
         })}
