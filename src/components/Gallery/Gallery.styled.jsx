@@ -15,7 +15,7 @@ export const Card = styled.li`
   padding-top: 118px;
   position: relative;
   border-radius: 16px;
-  background-color: var(--card-bg);
+  background: var(--card-bg);
   background-image: url("${pokeball}");
   background-repeat: no-repeat;
   background-size: 155px 155px;

@@ -67,7 +67,7 @@
   }
 
   .type-flying {
-    --card-bg: linear-gradient(135deg, #cbe9ff 0%, #2299ee 100%);
+    --card-bg: #009acb;
     --card-tag: linear-gradient(135deg, #cbe9ff 0%, #2299ee 100%);
   }
 
