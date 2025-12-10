@@ -1,2 +1,4 @@
-export const firstElUpperCase = (str) =>
-  str.charAt(0).toUpperCase() + str.slice(1)
+export const firstElUpperCase = (str) => {
+  const cleanStr = str.replace(/[\d-].*/g, '').trim()
+  return cleanStr.charAt(0).toUpperCase() + cleanStr.slice(1)
+}

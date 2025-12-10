@@ -63,7 +63,9 @@ export const Gallery = () => {
               }
             }
           },
-          { threshold: 1 }
+          {
+            threshold: 1,
+          }
         )
         observerRef.current.observe(node)
       }
@@ -74,12 +76,12 @@ export const Gallery = () => {
   return (
     <>
       <GalleryList>
-      {renderedItems.map((pokemon, index) => {
+        {renderedItems.map((pokemon, index) => {
         const isLast = index === renderedItems.length - 1
         return (
           <Card className={`type-${pokemon.types[0]}`} ref={isLast ? setLastElement : null} key={pokemon.id}>
             <Thumb>
-              <CardImage src={pokemon.sprite} alt={pokemon.name} />
+              <CardImage src={pokemon.sprite} alt={pokemon.name} loading='lazy' />
             </Thumb>
             <Name>{firstElUpperCase(pokemon.name)}</Name>
             <CardId>{editId(pokemon.id)}</CardId>

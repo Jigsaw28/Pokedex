@@ -69,7 +69,7 @@ const pokemonSlice = createSlice({
       // додаємо деталі в кінець items
       state.items = [...state.items, ...action.payload.items]
       // оновлюємо batchOffset: offset + BATCH_SIZE
-      state.batchOffset = Math.min(state.sortedResults.length, action.payload.offset + BATCH_SIZE)
+      state.batchOffset = Math.min(state.sortedResults.length, action.payload.offset)
     })
 
     builder.addCase(fetchDetailsBatch.rejected, (state, action) => {

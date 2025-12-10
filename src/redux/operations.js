@@ -3,7 +3,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const BATCH_SIZE = 20
+export const BATCH_SIZE = 10
 
 export const fetchResultsList = createAsyncThunk(
   'pokemons/fetchResultsList',
@@ -38,9 +38,9 @@ export const fetchDetailsBatch = createAsyncThunk(
 
       // Window size — скільки URL запитуємо одночасно в кожній ітерації.
       // Вибір: BATCH_SIZE * 3 — трохи запитів «про запас»
-      const WINDOW = Math.max(10, BATCH_SIZE * 3)
+      const WINDOW = Math.max(10, BATCH_SIZE * 2)
 
-      outer: while (collected.length < BATCH_SIZE && idx < orderList.length) {
+      while (collected.length < BATCH_SIZE && idx < orderList.length) {
         const slice = orderList.slice(idx, Math.min(idx + WINDOW, orderList.length))
 
         // Запитуємо цей шматок паралельно (але не занадто великий)
