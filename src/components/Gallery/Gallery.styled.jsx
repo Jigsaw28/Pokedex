@@ -8,7 +8,7 @@ export const GalleryList = styled.ul`
   row-gap: 82px;
   max-width: calc(1512px - 128px);
 `
-export const Card = styled.li`
+export const CardItem = styled.li`
   width: 322px;
   height: 260px;
   padding: 24px;
