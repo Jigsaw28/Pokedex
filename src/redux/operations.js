@@ -2,8 +2,10 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { transformPokemonData } from '../utils/transformPokemonData'
 
-export const BATCH_SIZE = 10
+export const BATCH_SIZE = 20
+
 
 export const fetchResultsList = createAsyncThunk(
   'pokemons/fetchResultsList',
@@ -27,7 +29,7 @@ export const fetchDetailsBatch = createAsyncThunk(
   async ({ offset }, thunkAPI) => {
     try {
       const state = thunkAPI.getState()
-      const orderList = state.pokemons.sortedResults // масив name+url у потрібному порядку
+      const orderList = state.pokemons.sortedResults
       if (!orderList || offset >= orderList.length) {
         return { items: [], offset }
       }
@@ -37,40 +39,40 @@ export const fetchDetailsBatch = createAsyncThunk(
       let idx = offset
 
       // Window size — скільки URL запитуємо одночасно в кожній ітерації.
-      // Вибір: BATCH_SIZE * 3 — трохи запитів «про запас»
-      const WINDOW = Math.max(10, BATCH_SIZE * 2)
+      // BATCH_SIZE * 3 — трохи запитів «про запас»
+      // Оптимізація: було 60, стало ~15 для зменшення навантаження
+      const WINDOW = Math.max(10, BATCH_SIZE)
 
       while (collected.length < BATCH_SIZE && idx < orderList.length) {
+        const sliceStart = idx
         const slice = orderList.slice(idx, Math.min(idx + WINDOW, orderList.length))
 
-        // Запитуємо цей шматок паралельно (але не занадто великий)
+        // Запитуємо цей шматок паралельно
         const responses = await Promise.all(
-          slice.map(r => axios.get(r.url, { signal: SIGNAL }).then(res => res.data).catch(err => {
-            // якщо конкретний запит провалився, повертаємо null, але не кидаємо весь batch
-            if (err?.code === 'ERR_CANCELED') return null
-            return null
-          }))
+          slice.map((r) =>
+            axios
+              .get(r.url, { signal: SIGNAL })
+              .then((res) => res.data)
+              .catch((err) => {
+                if (err?.code === 'ERR_CANCELED') return null
+                return null
+              })
+          )
         )
 
         for (let i = 0; i < responses.length; i++) {
-          const d = responses[i]
-          if (!d) continue
-          if (d.is_default) {
-            collected.push({
-              id: d.id,
-              name: d.name,
-              types: d.types.map(t => t.type.name),
-              sprite: d.sprites?.other?.['official-artwork']?.front_default || d.sprites?.front_default,
-            })
+          const data = responses[i]
+          const pokemon = transformPokemonData(data)
+          if (pokemon) {
+            collected.push(pokemon)
+          }
+
+          if (collected.length >= BATCH_SIZE) {
+            return { items: collected, offset: sliceStart + i + 1 }
           }
         }
-
-        // Переміщаємо індекс на наступну віконну порцію
         idx += slice.length
       }
-
-      // Повертаємо зібрані дефолтні елементи і наступний offset (просто idx)
-      return { items: collected, offset: idx }
     } catch (err) {
       if (thunkAPI.signal.aborted || err?.code === 'ERR_CANCELED') {
         return thunkAPI.rejectWithValue({ aborted: true })

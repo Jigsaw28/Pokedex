@@ -13,7 +13,7 @@ import {
   Thumb,
   TypeEl,
   TypesList,
-} from '../Gallery/Gallery.styled'
+} from '../Card/Card.styled'
 
 export const Card = ({ pokemon, isLast }) => {
   const dispatch = useDispatch()
